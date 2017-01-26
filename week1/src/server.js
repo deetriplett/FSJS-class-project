@@ -4,10 +4,22 @@ const config =require('./config');
 
 const app = express();
 
+//Response with Name
 app.use('./hello/:name', function(req, res, next) {
   res.end('Hello ${req.params.name}');
 }
-        
+//Response without name
+app.use('/hello', function(req, res, next) {
+    res.end('Hello Code Louisville');
+});
+
+//Retrieve data
+app.use('/data,' function(req,res,next) {
+  const myData = {}
+
+  res.json(myData);
+});
+
 app.use(function (req, res, next) {
   res.format({
     html: ()=> res.send(`
@@ -16,7 +28,7 @@ app.use(function (req, res, next) {
     <li>Get list of files (inc meta data)</li>
     <li>Upload file</li>
     <li>Edit file</li>
-    <li>Delete FIle</li>
+    <li>Delete File</li>
     </ul>
     `)
   })
